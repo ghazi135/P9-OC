@@ -2,7 +2,7 @@ package com.openclassrooms.patient.service;
 
 
 import com.openclassrooms.patient.entity.Patient;
-import com.openclassrooms.patient.exception.PatientNotFoundExecption;
+import com.openclassrooms.patient.exception.PatientNotFoundException;
 import com.openclassrooms.patient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class PatientService {
 
 
 
-    public void updatePatient(Patient patient, Long id) throws PatientNotFoundExecption {
+    public void updatePatient(Patient patient, Long id) throws PatientNotFoundException {
 
         if(patientRepository.existsById(id)){
             Patient patient1 = patientRepository.findById(id).get();
@@ -51,7 +51,7 @@ public class PatientService {
             patientRepository.save(patient1);
         }
         else{
-            throw  new PatientNotFoundExecption("Patient not found with ID :" + id);
+            throw  new PatientNotFoundException("Patient not found with ID :" + id);
         }
 
 
@@ -59,13 +59,13 @@ public class PatientService {
     }
 
 
-    public void deletePatient( Long id) throws PatientNotFoundExecption {
+    public void deletePatient( Long id) throws PatientNotFoundException {
 
         if(patientRepository.existsById(id)){
             patientRepository.deleteById(id);
         }
         else
-            throw new PatientNotFoundExecption("Patient not found with ID : " + id);
+            throw new PatientNotFoundException("Patient not found with ID : " + id);
 
     }
 

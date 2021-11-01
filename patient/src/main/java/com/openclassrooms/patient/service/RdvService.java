@@ -4,11 +4,8 @@ package com.openclassrooms.patient.service;
 import com.openclassrooms.patient.entity.Rdv;
 import com.openclassrooms.patient.exception.RdvNotFoundException;
 import com.openclassrooms.patient.repository.RdvRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class RdvService {

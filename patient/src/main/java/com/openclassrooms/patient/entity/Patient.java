@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "patient")
-
 public class Patient {
 
     @Id
@@ -33,12 +32,10 @@ public class Patient {
     private String firstName;
 
     @Column(name = "date_birth")
-
     @DateTimeFormat(pattern = "YYYY-mm-dd")
     private LocalDate dateOfBirth;
 
     @Column(name = "address")
-
     private String address;
 
     @Column(name = "phone_number")

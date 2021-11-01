@@ -1,6 +1,6 @@
 package com.openclassrooms.patient.controller;
 
-import com.openclassrooms.patient.exception.PatientNotFoundExecption;
+import com.openclassrooms.patient.exception.PatientNotFoundException;
 import com.openclassrooms.patient.exception.RdvNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import java.util.Map;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(PatientNotFoundExecption.class)
+    @ExceptionHandler(PatientNotFoundException.class)
     @ResponseBody
-    public ResponseEntity<Object> handlePatientNotFoundExecption(PatientNotFoundExecption ex, WebRequest request) {
+    public ResponseEntity<Object> handlePatientNotFoundExecption(PatientNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());

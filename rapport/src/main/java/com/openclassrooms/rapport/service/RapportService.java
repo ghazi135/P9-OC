@@ -65,7 +65,7 @@ public class RapportService {
         return status;
     }
 
-    private long calculNbDeclencheurs(List<Note> notes) {
+     long calculNbDeclencheurs(List<Note> notes) {
         String noteToStream = notes.stream()
                                    .map(Note::getNote)
                                    .map(String::trim)

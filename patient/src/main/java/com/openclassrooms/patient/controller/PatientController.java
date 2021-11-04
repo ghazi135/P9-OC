@@ -40,7 +40,7 @@ public class PatientController {
     @PostMapping("/patient")
     public void addPatient(@RequestBody  Patient patient) {
 
-        patientService.savePatient(patient);
+         patientService.savePatient(patient);
 
     }
 

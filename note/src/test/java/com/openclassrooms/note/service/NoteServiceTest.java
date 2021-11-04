@@ -4,10 +4,12 @@ package com.openclassrooms.note.service;
 import com.openclassrooms.note.model.Notes;
 import com.openclassrooms.note.repository.NoteRepository;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -34,17 +36,17 @@ public class NoteServiceTest {
     public void testGetNotesById() {
         Notes notes = new Notes();
         notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
-        notes.setId("42");
-        notes.setPatientLastName("Doe");
+        notes.setId("10");
+        notes.setPatientLastName("test");
         notes.setPatientId(12);
-        notes.setPatientFirstName("Jane");
+        notes.setPatientFirstName("test1");
         notes.setNote("Note");
         Optional<Notes> ofResult = Optional.<Notes>of(notes);
         when(this.noteRepository.findById(anyString())).thenReturn(ofResult);
-        Optional<Notes> actualNotesById = this.noteService.findNoteById("42");
+        Optional<Notes> actualNotesById = this.noteService.findNoteById("10");
         assertSame(ofResult, actualNotesById);
         assertTrue(actualNotesById.isPresent());
-        verify(this.noteRepository).findById(anyString());
+        verify(noteRepository).findById(anyString());
     }
 
 
@@ -52,10 +54,10 @@ public class NoteServiceTest {
     public void testCreateNotes() {
         Notes notes = new Notes();
         notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
-        notes.setId("42");
-        notes.setPatientLastName("Doe");
+        notes.setId("10");
+        notes.setPatientLastName("test");
         notes.setPatientId(123);
-        notes.setPatientFirstName("Jane");
+        notes.setPatientFirstName("test1");
         notes.setNote("Note");
 
         when(this.noteRepository.save(anyObject())).thenReturn(notes);
@@ -78,23 +80,23 @@ public class NoteServiceTest {
     public void testUpdateNotes() {
         Notes notes = new Notes();
         notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
-        notes.setId("42");
-        notes.setPatientLastName("Doe");
+        notes.setId("10");
+        notes.setPatientLastName("test");
         notes.setPatientId(123);
-        notes.setPatientFirstName("Jane");
+        notes.setPatientFirstName("test1");
         notes.setNote("Note");
         Optional<Notes> ofResult = Optional.<Notes>of(notes);
 
         Notes notes1 = new Notes();
         notes1.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
-        notes1.setId("42");
-        notes1.setPatientLastName("Doe");
+        notes1.setId("10");
+        notes1.setPatientLastName("test2");
         notes1.setPatientId(123);
-        notes1.setPatientFirstName("Jane");
+        notes1.setPatientFirstName("test3");
         notes1.setNote("Note");
         when(noteRepository.save((Notes) any())).thenReturn(notes1);
         when(noteRepository.findById(anyString())).thenReturn(ofResult);
-        noteService.updateNotes("42",notes1);
+        noteService.updateNotes("10",notes1);
         verify(noteRepository).findById(anyString());
         verify(noteRepository).save((Notes) any());
     }

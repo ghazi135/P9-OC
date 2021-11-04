@@ -59,7 +59,7 @@ public class PatientService {
     }
 
 
-    public void deletePatient( Long id) throws PatientNotFoundException {
+    public void deletePatient(Long id) throws PatientNotFoundException {
 
         if(patientRepository.existsById(id)){
             patientRepository.deleteById(id);

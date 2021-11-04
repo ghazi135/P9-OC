@@ -23,8 +23,9 @@ public class NoteService {
     }
 
 
-    public void saveNote (Notes notes) {
+    public Notes saveNote (Notes notes) {
         noteRepository.save(notes);
+        return notes;
     }
 
 
@@ -36,7 +37,6 @@ public class NoteService {
 
     public void updateNotes(String id, Notes notes) {
         Notes note = noteRepository.findById(id).get();
-
         note.setNote(notes.getNote());
         note.setDateNote(notes.getDateNote());
         note.setPatientId(notes.getPatientId());

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200/")
 @RequestMapping(value = "/notes")
 public class NoteController {
 
@@ -36,23 +37,21 @@ public class NoteController {
     }
 
     @PostMapping
-    public void addNotes(@RequestBody Notes notes) {
+    public Notes addNotes(@RequestBody Notes notes) {
 
-        noteService.saveNote(notes);
+        return noteService.saveNote(notes);
+
 
     }
-
-    @PutMapping(value = "/notes/{id}")
+    @PutMapping(value = "/{id}")
     public void updateNotes(@PathVariable String id, @RequestBody Notes notes) {
 
         noteService.updateNotes(id,notes);
     }
 
-
-    @DeleteMapping("/notes/{id}")
+    @DeleteMapping("/{id}")
     public void deleteNotes(@PathVariable("id") String id) {
         noteService.deleteNotes(id);
     }
-
 
 }

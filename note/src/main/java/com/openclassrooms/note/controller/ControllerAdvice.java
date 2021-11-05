@@ -1,7 +1,6 @@
-package com.openclassrooms.patient.controller;
+package com.openclassrooms.note.controller;
 
-import com.openclassrooms.patient.exception.PatientNotFoundException;
-import com.openclassrooms.patient.exception.RdvNotFoundException;
+import com.openclassrooms.note.exception.NoteNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,24 +15,13 @@ import java.util.Map;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(PatientNotFoundException.class)
+    @ExceptionHandler(NoteNotFoundException.class)
     @ResponseBody
-    public ResponseEntity<Object> handlePatientNotFoundExecption(PatientNotFoundException ex, WebRequest request) {
+    public ResponseEntity<Object> handleNoteNotFoundException(NoteNotFoundException ex, WebRequest request) {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Patient Not Found!!!" + ex);
-
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(RdvNotFoundException.class)
-    @ResponseBody
-    public ResponseEntity<Object> handleRdvNotFoundException(RdvNotFoundException ex, WebRequest request) {
-
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", "RDV Not Found!!!"+ ex);
+        body.put("message", "Note Not Found!!!"+ ex);
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
@@ -44,9 +32,9 @@ public class ControllerAdvice {
 
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("message", "Other problem exist with patient"+ ex);
+        body.put("message", "Other problem exist with note"+ ex);
 
         return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 }
+

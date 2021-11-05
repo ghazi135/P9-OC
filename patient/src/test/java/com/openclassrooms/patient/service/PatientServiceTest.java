@@ -39,7 +39,7 @@ public class PatientServiceTest {
     }
 
     @Test
-    public void testFindPatientByLastAndFirstName() {
+    public void testFindPatientByLastAndFirstName() throws PatientNotFoundException {
         Patient patient = new Patient();
         patient.setLastName("bouzazi");
         patient.setDateOfBirth(LocalDate.ofEpochDay(1L));
@@ -70,7 +70,7 @@ public class PatientServiceTest {
     }
 
     @Test
-    public void testGetById() {
+    public void testGetById() throws PatientNotFoundException {
         Patient patient = new Patient();
         patient.setLastName("bouzazi");
         patient.setDateOfBirth(LocalDate.ofEpochDay(1L));

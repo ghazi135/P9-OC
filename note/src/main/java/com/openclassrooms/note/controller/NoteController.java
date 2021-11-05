@@ -1,6 +1,7 @@
 package com.openclassrooms.note.controller;
 
 
+import com.openclassrooms.note.exception.NoteNotFoundException;
 import com.openclassrooms.note.model.Notes;
 import com.openclassrooms.note.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class NoteController {
 
 
     @GetMapping("/{id}")
-    public Notes getNotesById(@PathVariable String id) {
+    public Notes getNotesById(@PathVariable String id) throws NoteNotFoundException {
        return noteService.findNoteById(id).get();
 
 
@@ -31,7 +32,7 @@ public class NoteController {
 
 
     @GetMapping("/findByLastAndFirstName")
-    public List<Notes>  getNotesByFirstAndLastName(@RequestParam("lastName") String patientLastName, @RequestParam("firstName") String patientFirstName) {
+    public List<Notes>  getNotesByFirstAndLastName(@RequestParam("lastName") String patientLastName, @RequestParam("firstName") String patientFirstName) throws NoteNotFoundException {
        return  noteService.findNoteByLastAndFirstName(patientLastName, patientFirstName);
 
     }
@@ -41,16 +42,16 @@ public class NoteController {
 
         return noteService.saveNote(notes);
 
-
     }
+
     @PutMapping(value = "/{id}")
-    public void updateNotes(@PathVariable String id, @RequestBody Notes notes) {
+    public void updateNotes(@PathVariable String id, @RequestBody Notes notes) throws NoteNotFoundException {
 
         noteService.updateNotes(id,notes);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteNotes(@PathVariable("id") String id) {
+    public void deleteNotes(@PathVariable("id") String id) throws NoteNotFoundException {
         noteService.deleteNotes(id);
     }
 

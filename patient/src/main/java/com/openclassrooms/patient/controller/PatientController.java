@@ -25,13 +25,13 @@ public class PatientController {
 
 
     @GetMapping("/patient/{id}")
-    public Patient getPatientById(@PathVariable Long id) {
+    public Patient getPatientById(@PathVariable Long id) throws PatientNotFoundException {
         return patientService.getPatientById(id).get();
     }
 
 
     @GetMapping("/patient/getPatientLastAndFirst")
-    public Patient getPatientByLastAndFirstName (@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName) {
+    public Patient getPatientByLastAndFirstName (@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName) throws PatientNotFoundException {
 
         return patientService.findPatientByLastAndFirstName(lastName, firstName);
     }

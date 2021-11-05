@@ -1,15 +1,14 @@
 package com.openclassrooms.note.service;
 
 
+import com.openclassrooms.note.exception.NoteNotFoundException;
 import com.openclassrooms.note.model.Notes;
 import com.openclassrooms.note.repository.NoteRepository;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class NoteServiceTest {
 
 
     @Test
-    public void testGetNotesById() {
+    public void testGetNotesById() throws NoteNotFoundException {
         Notes notes = new Notes();
         notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
         notes.setId("10");
@@ -67,7 +66,7 @@ public class NoteServiceTest {
 
 
     @Test
-    public void testFindNotesByLastAndFirstName() {
+    public void testFindNotesByLastAndFirstName() throws NoteNotFoundException {
         ArrayList<Notes> notesList = new ArrayList<Notes>();
         when(this.noteRepository.findByPatientLastNameAndPatientFirstName(anyString(), anyString())).thenReturn(notesList);
         List<Notes> actualFindNotesByLastAndFirstNameResult = this.noteService.findNoteByLastAndFirstName("Doe", "Jane");
@@ -77,7 +76,7 @@ public class NoteServiceTest {
     }
 
     @Test
-    public void testUpdateNotes() {
+    public void testUpdateNotes() throws NoteNotFoundException {
         Notes notes = new Notes();
         notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
         notes.setId("10");
@@ -103,7 +102,7 @@ public class NoteServiceTest {
 
 
     @Test
-    public void testDeleteNote() {
+    public void testDeleteNote() throws NoteNotFoundException {
         doNothing().when(noteRepository).deleteById(anyString());
         noteService.deleteNotes("123456");
         verify(noteRepository).deleteById(anyString());

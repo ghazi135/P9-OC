@@ -13,19 +13,17 @@ import java.util.List;
 @RequestMapping(value = "/rdv")
 public class RdvController {
 
-    @Autowired
-    private RdvRepository rdvRepository;
 
     @Autowired
     private RdvService rdvService;
 
     @GetMapping
     public List<Rdv> getRdv() {
-        return rdvRepository.findAll();
+        return rdvService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Rdv getRdvById(@PathVariable Long id) {
+    public Rdv getRdvById(@PathVariable Long id) throws RdvNotFoundException {
        return rdvService.getRdvById(id);
 
     }

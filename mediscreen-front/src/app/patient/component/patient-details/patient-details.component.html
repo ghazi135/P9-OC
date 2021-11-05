@@ -1,3 +1,4 @@
+<h2>Patient</h2>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
@@ -43,10 +44,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
+
 </div>
 
 <h2>List Of Notes</h2>
@@ -71,7 +69,7 @@
     <ng-container matColumnDef="Delete">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="deleteNote(element.id)" >Delete Patient</button>
+        <button mat-raised-button (click)="deleteNote(element.id)" >Delete Note</button>
       </td>
     </ng-container>
 

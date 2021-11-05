@@ -13,7 +13,7 @@ public class RapportController {
     @Autowired
     private RapportService rapportService;
 
-    @GetMapping("/reports/lastAndFirstName")
+    @GetMapping("/reports/lastNameAndFirstName")
     public Rapport getRapportByLastAndFirstName(@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName) {
 
         return rapportService.getRapportByLastAndFirstName(lastName, firstName);

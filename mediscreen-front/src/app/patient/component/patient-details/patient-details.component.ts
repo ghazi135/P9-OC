@@ -9,6 +9,7 @@ import {NoteService} from "../../../note/service/note.service";
 import {RepportService} from "../../../repport/service/repport.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DatePipe, formatDate} from "@angular/common";
+import {RepportElement} from "../../../repport/model/Repport";
 
 @Component({
   selector: 'app-patient-details',
@@ -17,12 +18,12 @@ import {DatePipe, formatDate} from "@angular/common";
   providers: [DatePipe]
 })
 export class PatientDetailsComponent implements OnInit {
-
   displayedColumns: string[] = ['idPatient', 'lastName', 'firstName', 'dateOfBirth', 'address', 'phoneNumber','sex'];
   displayedNoteColumns: string[] = ['note','dateNote','Delete'];
-
+  displayedReportColumns: string[] = ['age','firstName','lastName','sex','status'];
   dataSource!: PatientElement[];
   noteDataSource!: NoteElement[];
+  reportDataSource!: RepportElement[];
   myDate = new Date();
   formNote!: FormGroup;
   @ViewChild(MatPaginator)
@@ -62,6 +63,16 @@ export class PatientDetailsComponent implements OnInit {
         })
       })
     })
+}
+
+getReport() {
+  this.patientService.getPatientById(Number(this.route.snapshot.paramMap.get('id'))).subscribe(data => {
+    console.log(data)
+    this.repportService.getReport(data.lastName,data.firstName).subscribe(report => {
+      console.log("report", report);
+      this.reportDataSource = new MatTableDataSource<RepportElement>().data.concat(report)
+    })
+  })
 }
 
 deleteNote(id: string){

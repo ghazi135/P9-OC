@@ -90,9 +90,10 @@ public class PatientService {
             log.info("delete patient by id:" + id);
             patientRepository.deleteById(id);
         }
-        else
+        else {
             log.error("Patient not found with ID : " + id);
             throw new PatientNotFoundException("Patient not found with ID : " + id);
+        }
 
     }
 

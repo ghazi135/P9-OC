@@ -3,7 +3,7 @@ package com.openclassrooms.note.controller;
 
 import com.openclassrooms.note.exception.NoteNotFoundException;
 import com.openclassrooms.note.model.Notes;
-import com.openclassrooms.note.service.NoteService;
+import com.openclassrooms.note.serviceTest.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

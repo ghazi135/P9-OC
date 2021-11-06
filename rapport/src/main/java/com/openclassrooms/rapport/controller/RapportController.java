@@ -1,7 +1,7 @@
 package com.openclassrooms.rapport.controller;
 
 import com.openclassrooms.rapport.model.Rapport;
-import com.openclassrooms.rapport.service.RapportService;
+import com.openclassrooms.rapport.serviceTest.RapportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

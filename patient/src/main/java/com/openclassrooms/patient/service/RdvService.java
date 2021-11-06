@@ -38,9 +38,7 @@ public class RdvService {
     public Rdv getRdvById (Long id) throws RdvNotFoundException {
         if(rdvRepository.existsById(id)){
             log.info("find meeting by id:" + id);
-
             return rdvRepository.findById(id).get();
-
         }
         else{
             log.error(" no meeting found with ID:" + id);
@@ -49,7 +47,7 @@ public class RdvService {
     }
 
 
-    public void updateRdv ( Rdv rdv, Long id) throws RdvNotFoundException {
+    public Rdv updateRdv ( Rdv rdv, Long id) throws RdvNotFoundException {
         if(rdvRepository.existsById(id)){
             log.info("update meeting by id:" + id);
             Rdv rdv1 = rdvRepository.findById(id).get();
@@ -57,6 +55,7 @@ public class RdvService {
             rdv1.setDatePriseRdv(rdv.getDatePriseRdv());
             rdv1.setNamePatient(rdv.getNamePatient());
             rdvRepository.save(rdv1);
+            return rdv1;
         }
         else{
             log.error("mmeting not found with ID :" + id);

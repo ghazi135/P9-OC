@@ -1,4 +1,4 @@
-package com.openclassrooms.note.service;
+package com.openclassrooms.note.serviceTest;
 
 
 import com.openclassrooms.note.exception.NoteNotFoundException;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -42,6 +41,8 @@ public class NoteServiceTest {
         notes.setNote("Note");
         Optional<Notes> ofResult = Optional.<Notes>of(notes);
         when(this.noteRepository.findById(anyString())).thenReturn(ofResult);
+        when(this.noteRepository.existsById(anyString())).thenReturn(true);
+
         Optional<Notes> actualNotesById = this.noteService.findNoteById("10");
         assertSame(ofResult, actualNotesById);
         assertTrue(actualNotesById.isPresent());
@@ -50,18 +51,11 @@ public class NoteServiceTest {
 
 
     @Test
-    public void testCreateNotes() {
-        Notes notes = new Notes();
-        notes.setDateNote(LocalDateTime.of(1, 1, 1, 1, 1));
-        notes.setId("10");
-        notes.setPatientLastName("test");
-        notes.setPatientId(123);
-        notes.setPatientFirstName("test1");
-        notes.setNote("Note");
+    public void testSaveNotes() {
+        when(this.noteRepository.save((Notes) any())).thenReturn(new Notes());
+        noteService.saveNote(new Notes());
+        verify(this.noteRepository).save((Notes) any());
 
-        when(this.noteRepository.save(anyObject())).thenReturn(notes);
-        Notes notes1 = this.noteService.saveNote(notes);
-        assertEquals(notes,notes1);
     }
 
 
@@ -69,6 +63,8 @@ public class NoteServiceTest {
     public void testFindNotesByLastAndFirstName() throws NoteNotFoundException {
         ArrayList<Notes> notesList = new ArrayList<Notes>();
         when(this.noteRepository.findByPatientLastNameAndPatientFirstName(anyString(), anyString())).thenReturn(notesList);
+        when(this.noteRepository.existsByPatientLastNameAndAndPatientFirstName(anyString(), anyString())).thenReturn(true);
+
         List<Notes> actualFindNotesByLastAndFirstNameResult = this.noteService.findNoteByLastAndFirstName("Doe", "Jane");
         assertSame(notesList, actualFindNotesByLastAndFirstNameResult);
         assertTrue(actualFindNotesByLastAndFirstNameResult.isEmpty());
@@ -95,6 +91,8 @@ public class NoteServiceTest {
         notes1.setNote("Note");
         when(noteRepository.save((Notes) any())).thenReturn(notes1);
         when(noteRepository.findById(anyString())).thenReturn(ofResult);
+        when(noteRepository.existsById(anyString())).thenReturn(true);
+
         noteService.updateNotes("10",notes1);
         verify(noteRepository).findById(anyString());
         verify(noteRepository).save((Notes) any());
@@ -104,6 +102,7 @@ public class NoteServiceTest {
     @Test
     public void testDeleteNote() throws NoteNotFoundException {
         doNothing().when(noteRepository).deleteById(anyString());
+        when(noteRepository.existsById(anyString())).thenReturn(true);
         noteService.deleteNotes("123456");
         verify(noteRepository).deleteById(anyString());
     }

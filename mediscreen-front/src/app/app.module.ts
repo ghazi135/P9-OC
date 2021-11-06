@@ -48,6 +48,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PatientComponent } from './patient/component/patient.component';
 import { PatientDetailsComponent } from './patient/component/patient-details/patient-details.component';
+import { MeetingComponent } from './meeting/meeting.component';
 
 
 
@@ -55,7 +56,7 @@ const routes: Routes = [
   {path: '', component: PatientComponent},
   {path: 'patient', component: PatientComponent},
   {path: 'patient/:id', component: PatientDetailsComponent},
-
+  {path: 'Rdv', component: MeetingComponent},
 ];
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ const routes: Routes = [
     HeaderComponent,
     HomePageComponent,
     PatientDetailsComponent,
-    PatientComponent
+    PatientComponent,
+    MeetingComponent
   ],
   imports: [
     BrowserModule,

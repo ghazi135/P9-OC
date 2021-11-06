@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.Mockito.*;
 
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @ExtendWith(MockitoExtension.class)
 public class PatientServiceTest {
 
@@ -49,6 +50,8 @@ public class PatientServiceTest {
         patient.setFirstName("ghazi");
         patient.setSex("M");
         when(patientRepository.findByLastNameAndFirstName(anyString(), anyString())).thenReturn(patient);
+        when(patientRepository.existsByLastNameAndFirstName(anyString(), anyString())).thenReturn(true);
+
         assertSame(patient, patientService.findPatientByLastAndFirstName("bouzazi", "ghazi"));
         verify(this.patientRepository).findByLastNameAndFirstName(anyString(), anyString());
     }
@@ -81,6 +84,8 @@ public class PatientServiceTest {
         patient.setSex("M");
         Optional<Patient> ofResult = Optional.<Patient>of(patient);
         when(patientRepository.findById(anyLong())).thenReturn(ofResult);
+        when(patientRepository.existsById(anyLong())).thenReturn(true);
+
         patientService.getPatientById(1L);
         verify(patientRepository).findById(anyLong());
     }
@@ -124,11 +129,11 @@ public class PatientServiceTest {
         patient.setAddress("14 rue col");
         patient.setFirstName("ghazi");
         patient.setSex("M");
-        doNothing().when(patientRepository).deleteById(anyLong());
-        when(patientRepository.existsById(anyLong())).thenReturn(true);
+        when(patientRepository.existsById(1L)).thenReturn(true);
+        doNothing().when(patientRepository).deleteById(1L);
         patientService.deletePatient(1L);
-        verify(patientRepository).deleteById(anyLong());
-        verify(patientRepository).existsById(anyLong());
+        verify(patientRepository).deleteById(1L);
+        verify(patientRepository).existsById(1L);
     }
 
 }

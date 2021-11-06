@@ -1,4 +1,4 @@
-package com.openclassrooms.rapport.service;
+package com.openclassrooms.rapport.serviceTest;
 
 
 import com.openclassrooms.rapport.model.Note;
@@ -7,12 +7,11 @@ import com.openclassrooms.rapport.model.Rapport;
 import com.openclassrooms.rapport.proxy.NoteProxy;
 import com.openclassrooms.rapport.proxy.PatientProxy;
 import org.junit.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 @RunWith(MockitoJUnitRunner.class)
 public class repportServiceTest {
 

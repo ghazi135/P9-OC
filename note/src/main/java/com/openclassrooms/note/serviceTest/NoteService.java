@@ -1,4 +1,4 @@
-package com.openclassrooms.note.service;
+package com.openclassrooms.note.serviceTest;
 
 import com.openclassrooms.note.exception.NoteNotFoundException;
 import com.openclassrooms.note.model.Notes;

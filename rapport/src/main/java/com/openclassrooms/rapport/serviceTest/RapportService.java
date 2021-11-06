@@ -1,4 +1,4 @@
-package com.openclassrooms.rapport.service;
+package com.openclassrooms.rapport.serviceTest;
 
 import com.openclassrooms.rapport.model.Note;
 import com.openclassrooms.rapport.model.Patient;

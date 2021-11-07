@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/mediscreen</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="mediscreen@localhost [2]" uuid="10a73d4b-843e-4720-97a4-8dc748cc9583">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:33077/mediscreen</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

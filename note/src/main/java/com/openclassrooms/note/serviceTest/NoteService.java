@@ -74,7 +74,6 @@ public class NoteService {
             Notes note = noteRepository.findById(id).get();
             note.setNote(notes.getNote());
             note.setDateNote(notes.getDateNote());
-            note.setPatientId(notes.getPatientId());
             noteRepository.save(note);
             log.info("update note by id:" + id);
 

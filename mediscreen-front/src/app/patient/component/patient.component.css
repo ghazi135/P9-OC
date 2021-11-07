@@ -1,3 +1,13 @@
 table {
+
+  padding-top: 5%;
   width: 100%;
+}
+form{
+  padding-left: 1% ;
+}
+th{
+  color: black;
+  font-size: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
 }

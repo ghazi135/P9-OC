@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class RdvServiceTest {
 
 
     @Test
-    public void testGetPatientAge() {
+    public void testFindAll() {
 
         Rdv  rdv = new Rdv();
         List<Rdv> rdvs = new ArrayList<Rdv>();
@@ -51,6 +52,13 @@ public class RdvServiceTest {
     }
 
     @Test
+    public void testFindByIdWithException()  {
+
+
+        assertThrows(RdvNotFoundException.class, () -> rdvService.getRdvById(1L) );
+    }
+
+    @Test
     public void testDeleteById() throws RdvNotFoundException {
 
         Rdv  rdv = new Rdv();
@@ -62,6 +70,14 @@ public class RdvServiceTest {
 
 
     }
+
+    @Test
+    public void testDeleteByIdWithException()  {
+
+
+        assertThrows(RdvNotFoundException.class, () -> rdvService.deleteRdv(1L) );
+    }
+
 
     @Test
     public void testUpdateRdv() throws RdvNotFoundException {
@@ -77,6 +93,15 @@ public class RdvServiceTest {
 
 
     }
+
+    @Test
+    public void testUpdateRdvWithException()  {
+
+
+        assertThrows(RdvNotFoundException.class, () -> rdvService.updateRdv(new Rdv(),1L) );
+    }
+
+
 
     @Test
     public void testSaveRdv()  {

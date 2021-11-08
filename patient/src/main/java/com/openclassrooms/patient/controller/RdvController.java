@@ -22,6 +22,8 @@ public class RdvController {
         return rdvService.findAll();
     }
 
+
+
     @GetMapping("/{id}")
     public Rdv getRdvById(@PathVariable Long id) throws RdvNotFoundException {
        return rdvService.getRdvById(id);

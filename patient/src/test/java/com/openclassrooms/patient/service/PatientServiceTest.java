@@ -10,13 +10,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -56,6 +56,15 @@ public class PatientServiceTest {
         verify(this.patientRepository).findByLastNameAndFirstName(anyString(), anyString());
     }
 
+
+    @Test
+    public void testFindPatientByLastAndFirstNameWithException()  {
+
+        when(patientRepository.existsByLastNameAndFirstName(anyString(), anyString())).thenReturn(false);
+
+        assertThrows(PatientNotFoundException.class, () -> patientService.findPatientByLastAndFirstName("bouzazi", "ghazi"));
+    }
+
     @Test
     public void testSavePatient() {
         Patient patient = new Patient();
@@ -90,6 +99,13 @@ public class PatientServiceTest {
         verify(patientRepository).findById(anyLong());
     }
 
+    @Test
+    public void testGetByIdWithException()  {
+
+        assertThrows(PatientNotFoundException.class, () -> patientService.getPatientById(1L));
+    }
+
+
 
     @Test
     public void testUpdatePatient() throws PatientNotFoundException {
@@ -118,6 +134,11 @@ public class PatientServiceTest {
         verify(patientRepository).findById(anyLong());
     }
 
+    @Test
+    public void testUpdatePatientWithException()  {
+
+        assertThrows(PatientNotFoundException.class, () -> patientService.updatePatient(new Patient(),1L));
+    }
 
     @Test
     public void testDeletePatient() throws PatientNotFoundException {
@@ -136,4 +157,9 @@ public class PatientServiceTest {
         verify(patientRepository).existsById(1L);
     }
 
+    @Test
+    public void testDeletePatientWithException()  {
+
+        assertThrows(PatientNotFoundException.class, () -> patientService.deletePatient(1L));
+    }
 }

@@ -5,6 +5,8 @@ import {PatientService} from "../service/patient.service";
 import {Patient, PatientElement} from "../model/Patient";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {PatientUpdateDialogComponent} from "./patient-update-dialog/patient-update-dialog.component";
 
 @Component({
   selector: 'app-patient',
@@ -13,13 +15,29 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class PatientComponent implements OnInit {
 
-  displayedColumns: string[] = ['idPatient', 'lastName', 'firstName', 'dateOfBirth', 'address', 'phoneNumber','sex','Delete','Show'];
+  displayedColumns: string[] = ['idPatient', 'lastName', 'firstName', 'dateOfBirth', 'address', 'phoneNumber','sex','Delete','Show','update'];
   dataSource = new MatTableDataSource<PatientElement>();
   patientForm!: FormGroup;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  constructor(private patientService: PatientService, private router: Router, public dialog: MatDialog) { }
 
-  constructor(private patientService: PatientService, private router: Router) { }
+
+  openDialog(id: number, firstName: string, lastName: string, dateOfBirth: string, address: string,phoneNumber: number, sex: string): void {
+
+    const dialogRef = this.dialog.open(PatientUpdateDialogComponent, {
+      width: '250px',
+      data: new Patient(id,lastName,firstName,dateOfBirth,address,phoneNumber,sex),
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+        this.ngOnInit();
+        this.ngOnInit();
+
+      })
+  }
+
+
 
   ngOnInit(): void {
     this.patientForm = new FormGroup({

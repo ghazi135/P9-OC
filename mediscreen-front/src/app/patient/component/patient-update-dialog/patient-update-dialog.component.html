@@ -1,0 +1,34 @@
+<form [formGroup]="Patient">
+  <mat-form-field class="example-form-field">
+    <mat-label>First Name</mat-label>
+    <input formControlName="firstName"  matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Last Name</mat-label>
+    <input formControlName="lastName" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Address</mat-label>
+    <input formControlName="address" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>date of birth</mat-label>
+    <input  formControlName="dateOfBirth" matInput type="date">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Phone Number</mat-label>
+    <input formControlName="phoneNumber" matInput type="number">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>sex</mat-label>
+    <input formControlName="sex" matInput type="text">
+  </mat-form-field>
+  <button mat-raised-button  [mat-dialog-close]="patientObject" (click)="update()">Update</button>
+
+</form>
+

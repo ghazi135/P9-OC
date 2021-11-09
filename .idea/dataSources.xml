@@ -8,11 +8,11 @@
       <jdbc-url>jdbc:mysql://localhost:3306/mediscreen</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="mediscreen@localhost [2]" uuid="10a73d4b-843e-4720-97a4-8dc748cc9583">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="myFirstDatabase@mediscreen.drtkd.mongodb.net" uuid="f7974c41-50ae-41b9-914f-81a718273198">
+      <driver-ref>mongo</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:33077/mediscreen</jdbc-url>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://mediscreen.drtkd.mongodb.net/myFirstDatabase?retryWrites=true&amp;w=majority</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

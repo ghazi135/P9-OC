@@ -11,12 +11,6 @@
       <td mat-cell *matCellDef="let element"> {{element.namePatient}} </td>
     </ng-container>
 
-
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef> first Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-    </ng-container>
-
     <ng-container matColumnDef="datePriseRdv">
       <th mat-header-cell *matHeaderCellDef> Date Of Meeting</th>
       <td mat-cell *matCellDef="let element"> {{element.datePriseRdv}} </td>
@@ -31,6 +25,12 @@
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let element">
         <button mat-raised-button (click)="deleteMeeting(element.idRdv)" >Delete Meeting</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button  (click)="openDialog(element.idRdv, element.namePatient ,element.datePriseRdv,element.noteRdv)">Update Meeting</button>
       </td>
     </ng-container>
 

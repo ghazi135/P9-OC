@@ -3,7 +3,7 @@ package com.openclassrooms.note.controller;
 
 import com.openclassrooms.note.exception.NoteNotFoundException;
 import com.openclassrooms.note.model.Notes;
-import com.openclassrooms.note.serviceTest.NoteService;
+import com.openclassrooms.note.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -54,5 +54,8 @@ public class NoteController {
     public void deleteNotes(@PathVariable("id") String id) throws NoteNotFoundException {
         noteService.deleteNotes(id);
     }
+
+
+
 
 }

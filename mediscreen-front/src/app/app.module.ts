@@ -48,7 +48,10 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PatientComponent } from './patient/component/patient.component';
 import { PatientDetailsComponent } from './patient/component/patient-details/patient-details.component';
-import { MeetingComponent } from './meeting/meeting.component';
+import { MeetingComponent } from './meeting/component/meeting.component';
+import { PatientUpdateDialogComponent } from './patient/component/patient-update-dialog/patient-update-dialog.component';
+import { MeetingUpdateDialogComponent } from './meeting/component/meeting-update-dialog/meeting-update-dialog.component';
+import { UpdateNoteDialogComponent } from './note/component/update-note-dialog/update-note-dialog.component';
 
 
 
@@ -65,7 +68,10 @@ const routes: Routes = [
     HomePageComponent,
     PatientDetailsComponent,
     PatientComponent,
-    MeetingComponent
+    MeetingComponent,
+    PatientUpdateDialogComponent,
+    MeetingUpdateDialogComponent,
+    UpdateNoteDialogComponent
   ],
   imports: [
     BrowserModule,

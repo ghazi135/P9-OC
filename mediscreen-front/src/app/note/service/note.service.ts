@@ -4,6 +4,7 @@ import {HandleErrorsService} from "../../shared/shared-services/handle-errors.se
 import {Observable, throwError} from "rxjs";
 import {Note, NoteElement} from "../model/Note";
 import {catchError, map} from "rxjs/operators";
+import {RdvElement} from "../../meeting/model/Rdv";
 
 
 @Injectable({
@@ -31,6 +32,16 @@ export class NoteService {
     );
   }
 
+  getNotesById(id: string): Observable<Note> {
+    return this.http.get(`${this.NoteUrl}/${id}`).pipe(
+      map(response => response as NoteElement ),
+      catchError((error: HttpErrorResponse) => {
+        this.handleErrorsService.handleError(error.status);
+        return throwError(error);
+      })
+    );
+  }
+
 
   insertNote(note: NoteElement): Observable<NoteElement> {
     return this.http.post<NoteElement>(`${this.NoteUrl}`, note).pipe(
@@ -40,6 +51,18 @@ export class NoteService {
         return throwError(error);
       })
     );
+  }
+
+  updateNote(noteId: string, note: NoteElement): Observable<NoteElement> {
+    return this.http
+      .put<NoteElement>(`${this.NoteUrl}/${noteId}`, note)
+      .pipe(
+        map((response) => response as NoteElement),
+        catchError((error: HttpErrorResponse) => {
+          this.handleErrorsService.handleError(error.status);
+          return throwError(error);
+        })
+      );
   }
 
   deleteNote(noteId: string): Observable<NoteElement> {

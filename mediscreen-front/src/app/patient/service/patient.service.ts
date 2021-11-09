@@ -45,6 +45,20 @@ export class PatientService {
     );
   }
 
+  updatePatient(idPatient: number, patient: PatientElement): Observable<PatientElement> {
+    return this.http
+      .put<Patient>(`${this.patienturl}/patient/${idPatient}`, patient)
+      .pipe(
+        map((response) => response as Patient),
+        catchError((error: HttpErrorResponse) => {
+          this.handleErrorsService.handleError(error.status);
+          return throwError(error);
+        })
+      );
+  }
+
+
+
   deletePatient(PatientId: number): Observable<PatientElement> {
     return this.http.delete<PatientElement>(`${this.patienturl}/patient/${PatientId}`).pipe(
       map((response) => response as Patient),

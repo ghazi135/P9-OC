@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {HandleErrorsService} from "../../shared/shared-services/handle-errors.service";
 import {Observable, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
-import {RdvElement} from "../model/Rdv";
+import {Rdv, RdvElement} from "../model/Rdv";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,18 @@ export class MeetingService {
         return throwError(error);
       })
     );
+  }
+
+  updateRdv(idRdv: number, rdv: RdvElement): Observable<RdvElement> {
+    return this.http
+      .put<RdvElement>(`${this.RdvUrl}/${idRdv}`,rdv)
+      .pipe(
+        map((response) => response as RdvElement),
+        catchError((error: HttpErrorResponse) => {
+          this.handleErrorsService.handleError(error.status);
+          return throwError(error);
+        })
+      );
   }
 
   deletePatient(meetingId: number): Observable<RdvElement> {

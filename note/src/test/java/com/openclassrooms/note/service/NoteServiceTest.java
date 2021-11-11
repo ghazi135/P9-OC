@@ -78,7 +78,6 @@ public class NoteServiceTest {
         notes.setPatientFirstName("test1");
         notes.setNote("Note");
         Optional<Notes> ofResult = Optional.<Notes>of(notes);
-        when(noteRepository.findById(anyString())).thenReturn(ofResult);
         when(noteRepository.existsById(anyString())).thenReturn(false);
 
 
@@ -112,7 +111,6 @@ public class NoteServiceTest {
     @Test
     public void testFindNotesByLastAndFirstNameWithException() {
         ArrayList<Notes> notesList = new ArrayList<Notes>();
-        when(noteRepository.findByPatientLastNameAndPatientFirstName(anyString(), anyString())).thenReturn(notesList);
         when(noteRepository.existsByPatientLastNameAndAndPatientFirstName(anyString(), anyString())).thenReturn(false);
         assertThrows(NoteNotFoundException.class, () -> noteService.findNoteByLastAndFirstName("bouzazi", "ghazi"));
 

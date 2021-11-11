@@ -12,7 +12,7 @@ Java / Spring Boot / Angular / Docker
 
 
 Requirements : <br/>
-![Java Version](https://img.shields.io/badge/Java-1.8.x-red)
+![Java Version](https://img.shields.io/badge/Java-11-red)
 ![Maven Version](https://img.shields.io/badge/Maven-4.0.0-blue)
 ![ReactJS](https://img.shields.io/badge/Angular-13.0.1-red)
 ![MySQL Version](https://img.shields.io/badge/MySQL-8.x-cyan)

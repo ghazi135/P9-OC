@@ -7,7 +7,7 @@ Java / Spring Boot / Angular / Docker
 <h2> Diagram </h2>
 
 <p align="center">
-  <img alt="diagram" src="diagram.png" />
+  <img alt="diagram" src="diagram_mediscreen.png" />
 </p>
 
 

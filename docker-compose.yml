@@ -1,0 +1,58 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:8
+        container_name: mediscreen_mysql_database
+        ports:
+            - "3306:3306"
+
+        environment:
+            MYSQL_DATABASE: "mediscreen"
+            MYSQL_PASSWORD: "root"
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+    mongodb:
+        image: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        ports:
+            - 27017:27017
+
+
+    patient:
+        depends_on:
+            - mysql
+        image: patient_microservice
+        networks:
+            - default
+        container_name: patient_microservice
+        ports:
+            - "8081:8081"
+
+
+
+    note:
+        depends_on:
+            - mongodb
+        image: note_microservice
+        networks:
+            - default
+        container_name: note_microservice
+        ports:
+            - "8082:8082"
+
+
+
+    rapport:
+        depends_on:
+            - note
+            - patient
+        image: rapport_microservice
+        container_name: rapport_microservice
+        networks:
+            - default
+        ports:
+            - "8083:8083"
+

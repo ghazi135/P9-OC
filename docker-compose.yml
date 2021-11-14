@@ -5,7 +5,9 @@ services:
         container_name: mediscreen_mysql_database
         ports:
             - "3306:3306"
-
+        networks:
+            testing_net:
+                ipv4_address: 172.28.1.2
         environment:
             MYSQL_DATABASE: "mediscreen"
             MYSQL_PASSWORD: "root"
@@ -20,17 +22,20 @@ services:
         ports:
             - 27017:27017
 
-
+        networks:
+            testing_net:
+                ipv4_address: 172.28.1.3
     patient:
         depends_on:
             - mysql
+
         image: patient_microservice
-        networks:
-            - default
         container_name: patient_microservice
         ports:
             - "8081:8081"
-
+        networks:
+            testing_net:
+                ipv4_address: 172.28.1.4
 
 
     note:
@@ -38,11 +43,12 @@ services:
             - mongodb
         image: note_microservice
         networks:
-            - default
+            testing_net:
+                ipv4_address: 172.28.1.5
+
         container_name: note_microservice
         ports:
             - "8082:8082"
-
 
 
     rapport:
@@ -52,7 +58,16 @@ services:
         image: rapport_microservice
         container_name: rapport_microservice
         networks:
-            - default
+            testing_net:
+                ipv4_address: 172.28.1.6
+        environment:
+            - "server.port=8083"
         ports:
             - "8083:8083"
 
+networks:
+    testing_net:
+         ipam:
+            driver: default
+            config:
+              -   subnet: 172.28.0.0/16

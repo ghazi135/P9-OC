@@ -6,14 +6,14 @@ export interface NoteElement {
   dateNote: string;
 }
 
-export class Note implements NoteElement{
+export class Note implements NoteElement {
 
 
-    patientId: number;
-    note: string;
-    dateNote: string;
-    patientFirstName: string;
-    patientLastName: string;
+  patientId: number;
+  note: string;
+  dateNote: string;
+  patientFirstName: string;
+  patientLastName: string;
 
   constructor(patientId: number, patientFirstName: string, patientLastName: string, note: string, dateNote: string) {
 

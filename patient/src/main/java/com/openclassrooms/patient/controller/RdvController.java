@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/rdv")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"${mediscreen.front.url}","${mediscreen.front_prod.url}", "${rapport.url}"})
 public class RdvController {
 
 

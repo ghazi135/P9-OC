@@ -1,7 +1,7 @@
 <form [formGroup]="Patient">
   <mat-form-field class="example-form-field">
     <mat-label>First Name</mat-label>
-    <input formControlName="firstName"  matInput type="text">
+    <input formControlName="firstName" matInput type="text">
   </mat-form-field>
 
   <mat-form-field class="example-form-field">
@@ -16,7 +16,7 @@
 
   <mat-form-field class="example-form-field">
     <mat-label>date of birth</mat-label>
-    <input  formControlName="dateOfBirth" matInput type="date">
+    <input formControlName="dateOfBirth" matInput type="date">
   </mat-form-field>
 
   <mat-form-field class="example-form-field">
@@ -28,7 +28,7 @@
     <mat-label>sex</mat-label>
     <input formControlName="sex" matInput type="text">
   </mat-form-field>
-  <button mat-raised-button  [mat-dialog-close]="patientObject" (click)="update()">Update</button>
+  <button (click)="update()" [mat-dialog-close]="patientObject" mat-raised-button>Update</button>
 
 </form>
 

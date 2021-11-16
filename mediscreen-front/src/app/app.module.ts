@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { Routes, RouterModule } from '@angular/router';
+import {AppRoutingModule} from './app-routing.module';
+import {RouterModule, Routes} from '@angular/router';
 
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -42,17 +42,16 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
-import { HeaderComponent } from './shared/header/header.component';
+import {HeaderComponent} from './shared/header/header.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HomePageComponent } from './home-page/home-page.component';
-import { PatientComponent } from './patient/component/patient.component';
-import { PatientDetailsComponent } from './patient/component/patient-details/patient-details.component';
-import { MeetingComponent } from './meeting/component/meeting.component';
-import { PatientUpdateDialogComponent } from './patient/component/patient-update-dialog/patient-update-dialog.component';
-import { MeetingUpdateDialogComponent } from './meeting/component/meeting-update-dialog/meeting-update-dialog.component';
-import { UpdateNoteDialogComponent } from './note/component/update-note-dialog/update-note-dialog.component';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HomePageComponent} from './home-page/home-page.component';
+import {PatientComponent} from './patient/component/patient.component';
+import {PatientDetailsComponent} from './patient/component/patient-details/patient-details.component';
+import {MeetingComponent} from './meeting/component/meeting.component';
+import {PatientUpdateDialogComponent} from './patient/component/patient-update-dialog/patient-update-dialog.component';
+import {MeetingUpdateDialogComponent} from './meeting/component/meeting-update-dialog/meeting-update-dialog.component';
+import {UpdateNoteDialogComponent} from './note/component/update-note-dialog/update-note-dialog.component';
 
 
 const routes: Routes = [
@@ -61,6 +60,7 @@ const routes: Routes = [
   {path: 'patient/:id', component: PatientDetailsComponent},
   {path: 'Rdv', component: MeetingComponent},
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,4 +121,5 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

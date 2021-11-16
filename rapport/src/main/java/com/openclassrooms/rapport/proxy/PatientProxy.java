@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@FeignClient(name = "patient", url = "http://localhost:8081")
+@FeignClient(name = "patient", url =  "${patient.url}")
 public interface PatientProxy {
 
 

@@ -13,46 +13,49 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./meeting.component.css']
 })
 export class MeetingComponent implements OnInit {
-  displayedColumns: string[] = ['idRdv','namePatient','datePriseRdv','noteRdv','Delete','update'];
+  displayedColumns: string[] = ['idRdv', 'namePatient', 'datePriseRdv', 'noteRdv', 'Delete', 'update'];
   dataSource = new MatTableDataSource<RdvElement>();
   RdvForm!: FormGroup;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-  constructor(private meetingService: MeetingService, public dialog: MatDialog) { }
+  constructor(private meetingService: MeetingService, public dialog: MatDialog) {
+  }
 
   openDialog(id: number, patientName: string, dateOfMeeting: string, noteRdv: string): void {
     const dialogRef = this.dialog.open(MeetingUpdateDialogComponent, {
       width: '250px',
-      data: new Rdv(id,patientName,dateOfMeeting,noteRdv),
+      data: new Rdv(id, patientName, dateOfMeeting, noteRdv),
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log("result rdv:",result)
+      console.log("result rdv:", result)
       this.ngOnInit();
       this.ngOnInit();
     })
   }
+
   ngOnInit(): void {
     this.RdvForm = new FormGroup({
       namePatient: new FormControl(''),
-      datePriseRdv:  new FormControl(''),
-      noteRdv:  new FormControl('')
+      datePriseRdv: new FormControl(''),
+      noteRdv: new FormControl('')
     })
     this.meetingService.getMeetings().subscribe(data => {
       this.dataSource = new MatTableDataSource<RdvElement>(data);
     })
   }
 
-  insertMeeting(){
-    this.meetingService.insertMeeting(new Rdv(null! ,this.RdvForm.get('namePatient')?.value,this.RdvForm.get('datePriseRdv')?.value,this.RdvForm.get('noteRdv')?.value)).subscribe(()=>{
+  insertMeeting() {
+    this.meetingService.insertMeeting(new Rdv(null!, this.RdvForm.get('namePatient')?.value, this.RdvForm.get('datePriseRdv')?.value, this.RdvForm.get('noteRdv')?.value)).subscribe(() => {
       this.meetingService.getMeetings().subscribe(data => {
         this.dataSource = new MatTableDataSource<RdvElement>(data);
       })
     })
   }
-  deleteMeeting(id: number){
 
-    this.meetingService.deletePatient(id).subscribe(()=>{
+  deleteMeeting(id: number) {
+
+    this.meetingService.deletePatient(id).subscribe(() => {
       this.meetingService.getMeetings().subscribe(data => {
         this.dataSource = new MatTableDataSource<RdvElement>(data);
       })

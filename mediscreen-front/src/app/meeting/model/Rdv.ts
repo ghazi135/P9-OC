@@ -1,4 +1,3 @@
-
 export interface RdvElement {
   idRdv: number;
   namePatient: string;
@@ -7,7 +6,7 @@ export interface RdvElement {
 }
 
 
-export class Rdv implements RdvElement{
+export class Rdv implements RdvElement {
   idRdv: number;
   namePatient: string;
   datePriseRdv: string;

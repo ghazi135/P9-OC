@@ -1,10 +1,10 @@
 <form [formGroup]="Note">
   <mat-form-field class="example-form-field">
     <mat-label>Write note</mat-label>
-    <input formControlName="note"  matInput type="text">
+    <input formControlName="note" matInput type="text">
   </mat-form-field>
 
-  <button mat-raised-button  [mat-dialog-close]="NoteObject" (click)="update()">Update</button>
+  <button (click)="update()" [mat-dialog-close]="NoteObject" mat-raised-button>Update</button>
 
 </form>
 

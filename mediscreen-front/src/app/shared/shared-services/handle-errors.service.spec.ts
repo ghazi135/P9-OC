@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { HandleErrorsService } from './handle-errors.service';
+import {HandleErrorsService} from './handle-errors.service';
 
 describe('HandleErrorsService', () => {
   let service: HandleErrorsService;

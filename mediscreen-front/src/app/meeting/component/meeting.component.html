@@ -1,53 +1,56 @@
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table [dataSource]="dataSource" mat-table>
 
     <ng-container matColumnDef="idRdv">
-      <th mat-header-cell *matHeaderCellDef> Meeting Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.idRdv}} </td>
+      <th *matHeaderCellDef mat-header-cell> Meeting Id</th>
+      <td *matCellDef="let element" mat-cell> {{element.idRdv}} </td>
     </ng-container>
 
     <ng-container matColumnDef="namePatient">
-      <th mat-header-cell *matHeaderCellDef> Patient Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.namePatient}} </td>
+      <th *matHeaderCellDef mat-header-cell> Patient Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.namePatient}} </td>
     </ng-container>
 
     <ng-container matColumnDef="datePriseRdv">
-      <th mat-header-cell *matHeaderCellDef> Date Of Meeting</th>
-      <td mat-cell *matCellDef="let element"> {{element.datePriseRdv}} </td>
+      <th *matHeaderCellDef mat-header-cell> Date Of Meeting</th>
+      <td *matCellDef="let element" mat-cell> {{element.datePriseRdv}} </td>
     </ng-container>
 
     <ng-container matColumnDef="noteRdv">
-      <th mat-header-cell *matHeaderCellDef> noteRdv </th>
-      <td mat-cell *matCellDef="let element"> {{element.noteRdv}} </td>
+      <th *matHeaderCellDef mat-header-cell> noteRdv</th>
+      <td *matCellDef="let element" mat-cell> {{element.noteRdv}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Delete">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="deleteMeeting(element.idRdv)" >Delete Meeting</button>
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="deleteMeeting(element.idRdv)" mat-raised-button>Delete Meeting</button>
       </td>
     </ng-container>
     <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button  (click)="openDialog(element.idRdv, element.namePatient ,element.datePriseRdv,element.noteRdv)">Update Meeting</button>
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openDialog(element.idRdv, element.namePatient ,element.datePriseRdv,element.noteRdv)"
+                mat-raised-button>Update
+          Meeting
+        </button>
       </td>
     </ng-container>
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+                 aria-label="Select page of periodic elements"
+                 showFirstLastButtons>
   </mat-paginator>
 
   <form [formGroup]="RdvForm">
     <mat-form-field class="example-form-field">
       <mat-label>Patient name</mat-label>
-      <input formControlName="namePatient"  matInput type="text">
+      <input formControlName="namePatient" matInput type="text">
     </mat-form-field>
 
     <mat-form-field class="example-form-field">
@@ -60,7 +63,7 @@
       <input formControlName="noteRdv" matInput type="text">
     </mat-form-field>
 
-    <button mat-raised-button (click)="insertMeeting()">insert Meeting</button>
+    <button (click)="insertMeeting()" mat-raised-button>insert Meeting</button>
 
   </form>
 

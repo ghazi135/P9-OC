@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {HandleErrorsService} from "../../shared/shared-services/handle-errors.service";
 import {Observable, throwError} from "rxjs";
 import {Note, NoteElement} from "../model/Note";
 import {catchError, map} from "rxjs/operators";
-import {RdvElement} from "../../meeting/model/Rdv";
 
 
 @Injectable({
@@ -17,9 +16,8 @@ export class NoteService {
   constructor(
     private http: HttpClient,
     private handleErrorsService: HandleErrorsService
-  ) {}
-
-
+  ) {
+  }
 
 
   getNotesByPatient(lastName: string, firstName: string): Observable<any> {
@@ -34,7 +32,7 @@ export class NoteService {
 
   getNotesById(id: string): Observable<Note> {
     return this.http.get(`${this.NoteUrl}/${id}`).pipe(
-      map(response => response as NoteElement ),
+      map(response => response as NoteElement),
       catchError((error: HttpErrorResponse) => {
         this.handleErrorsService.handleError(error.status);
         return throwError(error);

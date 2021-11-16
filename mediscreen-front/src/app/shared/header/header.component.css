@@ -2,11 +2,13 @@ mat-toolbar {
   background-color: #02bcf5;
   padding-top: 10px;
   padding-bottom: 10px;
-  font-size: 25px; }
+  font-size: 25px;
+}
 
 .example-button-row {
   display: table-cell;
   width: 600px;
-  padding-left: 50px; }
+  padding-left: 50px;
+}
 
 /*# sourceMappingURL=header.component.css.map */

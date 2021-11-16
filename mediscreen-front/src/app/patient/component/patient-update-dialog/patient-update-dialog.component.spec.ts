@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PatientUpdateDialogComponent } from './patient-update-dialog.component';
+import {PatientUpdateDialogComponent} from './patient-update-dialog.component';
 
 describe('PatientUpdateDialogComponent', () => {
   let component: PatientUpdateDialogComponent;
@@ -8,9 +8,9 @@ describe('PatientUpdateDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PatientUpdateDialogComponent ]
+      declarations: [PatientUpdateDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

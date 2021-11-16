@@ -1,8 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { HandleErrorsService } from 'src/app/shared/shared-services/handle-errors.service';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HandleErrorsService} from 'src/app/shared/shared-services/handle-errors.service';
 import {Observable, throwError} from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Patient, PatientElement} from "../model/Patient";
 
 @Injectable({
@@ -10,10 +10,12 @@ import {Patient, PatientElement} from "../model/Patient";
 })
 export class PatientService {
   private patienturl = 'http://localhost:8081/api';
+
   constructor(
     private http: HttpClient,
     private handleErrorsService: HandleErrorsService
-  ) { }
+  ) {
+  }
 
   getPatients(): Observable<any> {
     return this.http.get(`${this.patienturl}/patient`).pipe(
@@ -56,7 +58,6 @@ export class PatientService {
         })
       );
   }
-
 
 
   deletePatient(PatientId: number): Observable<PatientElement> {

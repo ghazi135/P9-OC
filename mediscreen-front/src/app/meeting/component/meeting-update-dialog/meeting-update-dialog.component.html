@@ -1,8 +1,7 @@
-
 <form [formGroup]="Rdv">
   <mat-form-field class="example-form-field">
     <mat-label>Patient name</mat-label>
-    <input formControlName="namePatient"  matInput type="text">
+    <input formControlName="namePatient" matInput type="text">
   </mat-form-field>
 
   <mat-form-field class="example-form-field">
@@ -15,6 +14,6 @@
     <input formControlName="noteRdv" matInput type="text">
   </mat-form-field>
 
-  <button mat-raised-button [mat-dialog-close]="RdvObject" (click)="update()" >Update</button>
+  <button (click)="update()" [mat-dialog-close]="RdvObject" mat-raised-button>Update</button>
 
 </form>

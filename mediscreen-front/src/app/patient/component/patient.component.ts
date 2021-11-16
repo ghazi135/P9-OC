@@ -15,28 +15,29 @@ import {PatientUpdateDialogComponent} from "./patient-update-dialog/patient-upda
 })
 export class PatientComponent implements OnInit {
 
-  displayedColumns: string[] = ['idPatient', 'lastName', 'firstName', 'dateOfBirth', 'address', 'phoneNumber','sex','Delete','Show','update'];
+  displayedColumns: string[] = ['idPatient', 'lastName', 'firstName', 'dateOfBirth', 'address', 'phoneNumber', 'sex', 'Delete', 'Show', 'update'];
   dataSource = new MatTableDataSource<PatientElement>();
   patientForm!: FormGroup;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  constructor(private patientService: PatientService, private router: Router, public dialog: MatDialog) { }
+
+  constructor(private patientService: PatientService, private router: Router, public dialog: MatDialog) {
+  }
 
 
-  openDialog(id: number, firstName: string, lastName: string, dateOfBirth: string, address: string,phoneNumber: number, sex: string): void {
+  openDialog(id: number, firstName: string, lastName: string, dateOfBirth: string, address: string, phoneNumber: number, sex: string): void {
 
     const dialogRef = this.dialog.open(PatientUpdateDialogComponent, {
       width: '250px',
-      data: new Patient(id,lastName,firstName,dateOfBirth,address,phoneNumber,sex),
+      data: new Patient(id, lastName, firstName, dateOfBirth, address, phoneNumber, sex),
     });
     dialogRef.afterClosed().subscribe(result => {
 
-        this.ngOnInit();
-        this.ngOnInit();
+      this.ngOnInit();
+      this.ngOnInit();
 
-      })
+    })
   }
-
 
 
   ngOnInit(): void {
@@ -56,7 +57,7 @@ export class PatientComponent implements OnInit {
   }
 
   insertPatient() {
-    this.patientService.insertPatient(new Patient(null ,this.patientForm.get('firstName')?.value,this.patientForm.get('lastName')?.value,this.patientForm.get('dateOfBirth')?.value,this.patientForm.get('address')?.value,this.patientForm.get('phoneNumber')?.value,this.patientForm.get('sex')?.value)).subscribe(() =>{
+    this.patientService.insertPatient(new Patient(null, this.patientForm.get('firstName')?.value, this.patientForm.get('lastName')?.value, this.patientForm.get('dateOfBirth')?.value, this.patientForm.get('address')?.value, this.patientForm.get('phoneNumber')?.value, this.patientForm.get('sex')?.value)).subscribe(() => {
       this.patientService.getPatients().subscribe(data => {
         console.log(data)
         this.dataSource = new MatTableDataSource<PatientElement>(data);
@@ -65,15 +66,16 @@ export class PatientComponent implements OnInit {
   }
 
 
-  deletePatient(id : number){
-    this.patientService.deletePatient(id).subscribe(()=>{
+  deletePatient(id: number) {
+    this.patientService.deletePatient(id).subscribe(() => {
       this.patientService.getPatients().subscribe(data => {
         console.log(data)
         this.dataSource = new MatTableDataSource<PatientElement>(data);
       });
     })
   }
-  getPatientDetails(id: number): void{
+
+  getPatientDetails(id: number): void {
     this.router.navigate(['' + 'patient' + '/' + id]);
   }
 }

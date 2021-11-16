@@ -19,9 +19,10 @@ services:
 
     mongodb:
         image: mongo
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: root
+        container_name: mediscreen_mongodb_database
+#        environment:
+#            MONGO_INITDB_ROOT_USERNAME: root
+#            MONGO_INITDB_ROOT_PASSWORD: root
         ports:
             - 27017:27017
 
@@ -33,6 +34,8 @@ services:
         depends_on:
             - mysql
         environment:
+            MEDISCREEN_FRONT_PROD_URL: http://localhost:8080
+            RAPPORT_URL: http://rapport:8083
             SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen
             SPRING_DATASOURCE_USERNAME: root
             SPRING_DATASOURCE_PASSWORD: root
@@ -43,15 +46,16 @@ services:
                 ipv4_address: 172.28.1.4
         ports:
             - 8081:8081
-#        links:
-#            - mysql
-
 
 
     note:
         depends_on:
             - mongodb
         image: note_microservice
+        environment:
+            MEDISCREEN_FRONT_URL: http://localhost:8080
+            RAPPORT_URL: http://rapport:8083
+            SPRING_DATA_MONGODB_HOST: mongodb
         networks:
             testing_net:
                 ipv4_address: 172.28.1.5
@@ -61,10 +65,11 @@ services:
 
 
     rapport:
-        depends_on:
-            - note
-            - patient
         image: rapport_microservice
+        environment:
+             MEDISCREEN_FRONT_URL: http://localhost:8080
+             PATIENT_URL: http://localhost:8081
+             NOTE_URL: http://localhost:8082
         container_name: rapport_microservice
         networks:
             testing_net:
@@ -72,9 +77,25 @@ services:
         ports:
             - 8083:8083
 
+    mediscreenFront:
+        depends_on:
+            - patient
+            - note
+            - rapport
+        restart: always
+        networks:
+            testing_net:
+                ipv4_address: 172.28.1.7
+        image: mediscreen_front
+        ports:
+            - "8080:80"
+
 networks:
     testing_net:
-         ipam:
+        ipam:
             driver: default
             config:
-              -   subnet: 172.28.0.0/16
+                -   subnet: 172.28.0.0/16
+volumes:
+    mediscreen_mediscreen_mysql_database:
+    mediscreen_mongodb_data_container:

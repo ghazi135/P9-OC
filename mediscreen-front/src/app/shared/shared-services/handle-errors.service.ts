@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { PopupService } from './popup.service';
+import {PopupService} from './popup.service';
 
 
 @Injectable({

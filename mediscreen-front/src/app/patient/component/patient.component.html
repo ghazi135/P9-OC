@@ -1,80 +1,82 @@
-
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table [dataSource]="dataSource" mat-table>
 
     <ng-container matColumnDef="idPatient">
-      <th mat-header-cell *matHeaderCellDef> Patient Id </th>
-      <td mat-cell *matCellDef="let element"> {{element.idPatient}} </td>
+      <th *matHeaderCellDef mat-header-cell> Patient Id</th>
+      <td *matCellDef="let element" mat-cell> {{element.idPatient}} </td>
     </ng-container>
 
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef> last Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      <th *matHeaderCellDef mat-header-cell> last Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef> first Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      <th *matHeaderCellDef mat-header-cell> first Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="dateOfBirth">
-      <th mat-header-cell *matHeaderCellDef> date Of Birth</th>
-      <td mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
+      <th *matHeaderCellDef mat-header-cell> date Of Birth</th>
+      <td *matCellDef="let element" mat-cell> {{element.dateOfBirth}} </td>
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef> address </th>
-      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      <th *matHeaderCellDef mat-header-cell> address</th>
+      <td *matCellDef="let element" mat-cell> {{element.address}} </td>
     </ng-container>
 
 
     <ng-container matColumnDef="phoneNumber">
-      <th mat-header-cell *matHeaderCellDef> phone Number </th>
-      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+      <th *matHeaderCellDef mat-header-cell> phone Number</th>
+      <td *matCellDef="let element" mat-cell> {{element.phoneNumber}} </td>
     </ng-container>
 
     <ng-container matColumnDef="sex">
-      <th mat-header-cell *matHeaderCellDef> sex </th>
-      <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+      <th *matHeaderCellDef mat-header-cell> sex</th>
+      <td *matCellDef="let element" mat-cell> {{element.sex}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Delete">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="deletePatient(element.idPatient)" >Delete Patient</button>
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="deletePatient(element.idPatient)" mat-raised-button>Delete Patient</button>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Show">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="getPatientDetails(element.idPatient)" >Show Patient Details</button>
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="getPatientDetails(element.idPatient)" mat-raised-button>Show Patient Details</button>
       </td>
     </ng-container>
 
 
     <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button (click)="openDialog(element.idPatient,element.lastName,element.firstName,element.dateOfBirth,element.address,element.phoneNumber,element.sex)" >Update Patient</button>
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openDialog(element.idPatient,element.lastName,element.firstName,element.dateOfBirth,element.address,element.phoneNumber,element.sex)"
+                mat-raised-button>
+          Update Patient
+        </button>
       </td>
     </ng-container>
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
   </table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                 showFirstLastButtons
-                 aria-label="Select page of periodic elements">
+                 aria-label="Select page of periodic elements"
+                 showFirstLastButtons>
   </mat-paginator>
 
   <form [formGroup]="patientForm">
     <mat-form-field class="example-form-field">
       <mat-label>First Name</mat-label>
-      <input formControlName="firstName"  matInput type="text">
+      <input formControlName="firstName" matInput type="text">
     </mat-form-field>
 
     <mat-form-field class="example-form-field">
@@ -101,7 +103,7 @@
       <mat-label>sex</mat-label>
       <input formControlName="sex" matInput type="text">
     </mat-form-field>
-    <button mat-raised-button (click)="insertPatient()">insert patient</button>
+    <button (click)="insertPatient()" mat-raised-button>insert patient</button>
 
   </form>
 

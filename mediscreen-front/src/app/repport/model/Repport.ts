@@ -1,19 +1,19 @@
-export interface RepportElement{
- serialVersionUID: number;
- lastName: string;
- firstName: string;
- sex: string;
- age: number;
- status: string;
+export interface RepportElement {
+  serialVersionUID: number;
+  lastName: string;
+  firstName: string;
+  sex: string;
+  age: number;
+  status: string;
 }
 
-export class Repport implements RepportElement{
-   serialVersionUID: number;
-   lastName: string;
-   firstName: string;
-   sex: string;
-   age: number;
-   status: string;
+export class Repport implements RepportElement {
+  serialVersionUID: number;
+  lastName: string;
+  firstName: string;
+  sex: string;
+  age: number;
+  status: string;
 
 
   constructor(serialVersionUID: number, lastName: string, firstName: string, sex: string, age: number, status: string) {

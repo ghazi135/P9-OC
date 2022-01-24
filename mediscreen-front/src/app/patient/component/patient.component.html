@@ -1,0 +1,110 @@
+<div class="mat-elevation-z8">
+  <table [dataSource]="dataSource" mat-table>
+
+    <ng-container matColumnDef="idPatient">
+      <th *matHeaderCellDef mat-header-cell> Patient Id</th>
+      <td *matCellDef="let element" mat-cell> {{element.idPatient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell> last Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell> first Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfBirth">
+      <th *matHeaderCellDef mat-header-cell> date Of Birth</th>
+      <td *matCellDef="let element" mat-cell> {{element.dateOfBirth}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th *matHeaderCellDef mat-header-cell> address</th>
+      <td *matCellDef="let element" mat-cell> {{element.address}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="phoneNumber">
+      <th *matHeaderCellDef mat-header-cell> phone Number</th>
+      <td *matCellDef="let element" mat-cell> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sex">
+      <th *matHeaderCellDef mat-header-cell> sex</th>
+      <td *matCellDef="let element" mat-cell> {{element.sex}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="deletePatient(element.idPatient)" mat-raised-button>Delete Patient</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Show">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="getPatientDetails(element.idPatient)" mat-raised-button>Show Patient Details</button>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="update">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openDialog(element.idPatient,element.lastName,element.firstName,element.dateOfBirth,element.address,element.phoneNumber,element.sex)"
+                mat-raised-button>
+          Update Patient
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 aria-label="Select page of periodic elements"
+                 showFirstLastButtons>
+  </mat-paginator>
+
+  <form [formGroup]="patientForm">
+    <mat-form-field class="example-form-field">
+      <mat-label>First Name</mat-label>
+      <input formControlName="firstName" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Last Name</mat-label>
+      <input formControlName="lastName" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Address</mat-label>
+      <input formControlName="address" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>date of birth</mat-label>
+      <input formControlName="dateOfBirth" matInput type="date">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Phone Number</mat-label>
+      <input formControlName="phoneNumber" matInput type="number">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>sex</mat-label>
+      <input formControlName="sex" matInput type="text">
+    </mat-form-field>
+    <button (click)="insertPatient()" mat-raised-button>insert patient</button>
+
+  </form>
+
+</div>

@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: de.bitgrip.archetypes:spring-boot-service:0.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/de/bitgrip/archetypes/spring-boot-service/0.1.0/spring-boot-service-0.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/de/bitgrip/archetypes/spring-boot-service/0.1.0/spring-boot-service-0.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/de/bitgrip/archetypes/spring-boot-service/0.1.0/spring-boot-service-0.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

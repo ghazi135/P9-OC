@@ -1,0 +1,70 @@
+<div class="mat-elevation-z8">
+  <table [dataSource]="dataSource" mat-table>
+
+    <ng-container matColumnDef="idRdv">
+      <th *matHeaderCellDef mat-header-cell> Meeting Id</th>
+      <td *matCellDef="let element" mat-cell> {{element.idRdv}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="namePatient">
+      <th *matHeaderCellDef mat-header-cell> Patient Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.namePatient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datePriseRdv">
+      <th *matHeaderCellDef mat-header-cell> Date Of Meeting</th>
+      <td *matCellDef="let element" mat-cell> {{element.datePriseRdv}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="noteRdv">
+      <th *matHeaderCellDef mat-header-cell> noteRdv</th>
+      <td *matCellDef="let element" mat-cell> {{element.noteRdv}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="deleteMeeting(element.idRdv)" mat-raised-button>Delete Meeting</button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="update">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openDialog(element.idRdv, element.namePatient ,element.datePriseRdv,element.noteRdv)"
+                mat-raised-button>Update
+          Meeting
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 aria-label="Select page of periodic elements"
+                 showFirstLastButtons>
+  </mat-paginator>
+
+  <form [formGroup]="RdvForm">
+    <mat-form-field class="example-form-field">
+      <mat-label>Patient name</mat-label>
+      <input formControlName="namePatient" matInput type="text">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>meeting Date</mat-label>
+      <input formControlName="datePriseRdv" matInput type="date">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>note</mat-label>
+      <input formControlName="noteRdv" matInput type="text">
+    </mat-form-field>
+
+    <button (click)="insertMeeting()" mat-raised-button>insert Meeting</button>
+
+  </form>
+
+</div>

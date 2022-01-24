@@ -1,0 +1,141 @@
+<h2>Patient</h2>
+
+<div class="mat-elevation-z8">
+  <table [dataSource]="dataSource" mat-table>
+
+    <ng-container matColumnDef="idPatient">
+      <th *matHeaderCellDef mat-header-cell> Patient Id</th>
+      <td *matCellDef="let element" mat-cell> {{element.idPatient}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell> last Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell> first Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfBirth">
+      <th *matHeaderCellDef mat-header-cell> date Of Birth</th>
+      <td *matCellDef="let element" mat-cell> {{element.dateOfBirth}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th *matHeaderCellDef mat-header-cell> address</th>
+      <td *matCellDef="let element" mat-cell> {{element.address}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="phoneNumber">
+      <th *matHeaderCellDef mat-header-cell> phone Number</th>
+      <td *matCellDef="let element" mat-cell> {{element.phoneNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sex">
+      <th *matHeaderCellDef mat-header-cell> sex</th>
+      <td *matCellDef="let element" mat-cell> {{element.sex}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+
+</div>
+
+<h2>List Of Notes</h2>
+
+<div class="mat-elevation-z8">
+  <table [dataSource]="noteDataSource" mat-table>
+
+
+    <ng-container matColumnDef="note">
+      <th *matHeaderCellDef mat-header-cell> note</th>
+      <td *matCellDef="let element" mat-cell> {{element.note}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dateNote">
+      <th *matHeaderCellDef mat-header-cell> dateNote</th>
+      <td *matCellDef="let element" mat-cell> {{element.dateNote}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="deleteNote(element.id)" mat-raised-button>Delete Note</button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="update">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="openDialog(element.id)" mat-raised-button>Update Note</button>
+      </td>
+    </ng-container>
+
+
+    <tr *matHeaderRowDef="displayedNoteColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedNoteColumns;" mat-row></tr>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   aria-label="Select page of periodic elements"
+                   showFirstLastButtons>
+    </mat-paginator>
+
+  </table>
+  <form [formGroup]="formNote">
+    <mat-form-field class="example-form-field">
+      <mat-label>Write a Note about the Patient</mat-label>
+      <textarea formControlName="note" matInput placeholder="write a note about this patient..."></textarea>
+    </mat-form-field>
+    <button (click)="insertNoteToPatient()" mat-raised-button>insert Note</button>
+  </form>
+
+
+</div>
+
+
+<h2>Report</h2>
+<div>
+  <button (click)="getReport()" mat-raised-button>generate report</button>
+</div>
+<div class="mat-elevation-z8">
+  <table [dataSource]="reportDataSource" mat-table>
+
+
+    <ng-container matColumnDef="age">
+      <th *matHeaderCellDef mat-header-cell> age</th>
+      <td *matCellDef="let element" mat-cell> {{element.age}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="lastName">
+      <th *matHeaderCellDef mat-header-cell> lastName</th>
+      <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <th *matHeaderCellDef mat-header-cell> first Name</th>
+      <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sex">
+      <th *matHeaderCellDef mat-header-cell> sex</th>
+      <td *matCellDef="let element" mat-cell> {{element.sex}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th *matHeaderCellDef mat-header-cell> status</th>
+      <td *matCellDef="let element" mat-cell> {{element.status}} </td>
+    </ng-container>
+
+    <tr *matHeaderRowDef="displayedReportColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedReportColumns;" mat-row></tr>
+  </table>
+
+</div>

@@ -1,0 +1,19 @@
+<form [formGroup]="Rdv">
+  <mat-form-field class="example-form-field">
+    <mat-label>Patient name</mat-label>
+    <input formControlName="namePatient" matInput type="text">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>meeting Date</mat-label>
+    <input formControlName="datePriseRdv" matInput type="date">
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>note</mat-label>
+    <input formControlName="noteRdv" matInput type="text">
+  </mat-form-field>
+
+  <button (click)="update()" [mat-dialog-close]="RdvObject" mat-raised-button>Update</button>
+
+</form>
